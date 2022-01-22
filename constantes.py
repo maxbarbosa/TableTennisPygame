@@ -27,3 +27,19 @@ cor_da_rede =               (211, 211, 211)
 plano_de_fundo_partida =    (107, 142, 35)
 plano_de_fundo_menu =       (205, 133, 63)
 cor_opcao =                 (75, 0, 130)
+
+#IMAGENS
+img_inicio =                'imagens/imagem_inicio.png'
+img_musicaLig =             'imagens/musicaLig.png'
+img_musicaDeslig =          'imagens/musicaDeslig.png'
+img_regra1 =                'imagens/regra1.png'
+img_regra2 =                'imagens/regra2.png'
+img_regra3 =                'imagens/regra3.png'
+img_seta_direita =          'imagens/setaDireita.png'
+img_seta_esquerda =         'imagens/setaEsquerda.png'
+img_bolinha =               'imagens/bolinha.png'
+img_raquete1 =              'imagens/raquete1.png'
+img_raquete2 =              'imagens/raquete2.png'
+
+#FONTE
+fonte = 'verdana'
