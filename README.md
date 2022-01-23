@@ -1,4 +1,6 @@
-# 🏓 Tênis de mesa 🏓
+<h1 align="center">
+    <p align="center">🏓 Tênis de mesa 🏓<p>
+</h1>
 <br>
 <p align="center"><img src="./assets/img.png" width="90%" height="90%"/></p>
 <br>
