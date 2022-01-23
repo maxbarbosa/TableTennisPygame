@@ -1,9 +1,6 @@
-<h1 align="center">
-    <p align="center">🏓 Tênis de mesa 🏓<p>
-</h1>
+<h1 align="center">🏓 Tênis de mesa 🏓</h1>
 <br>
-<p align="center"><img src="./assets/img.png" width="90%" height="90%"/></p>
-<br>
+<p align="center"><img src="./assets/modo_multijogador.png" width="90%" height="90%"/></p>
 
 ### 📜 Requisitos:
 * Python3
@@ -18,5 +15,9 @@ Após instalar as dependências, clone o repositório em seu PC da maneira que p
     
     git clone git@github.com:maxbarbosa/TableTennisPygame.git
    
+<h1 align="center">Tela de Menu</h1>
+<br>
+<p align="center"><img src="./assets/tela_menu.png" width="90%" height="90%"/></p>
+
 ### ❌ Desinstalando:
 Caso queira desinstalar o jogo de sua máquina, basta apenas excluir a pasta *TableTennisPygame*.
