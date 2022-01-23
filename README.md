@@ -1,4 +1,7 @@
 # 🏓 Tênis de mesa 🏓
+<br>
+<p align="center"><img src="./assets/img.png" width="90%" height="90%"/></p>
+<br>
 
 ### 📜 Requisitos:
 * Python3
