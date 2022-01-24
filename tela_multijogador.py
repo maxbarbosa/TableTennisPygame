@@ -84,7 +84,11 @@ def exibir_tela_multijogador():
         if tecla[K_RIGHT]:
             x_rqt2 = R_praDireita(x_rqt2, 1056)
             
-
+		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
+	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
+	    const.tela.blit(raquete2, (x_rqt2, y_rqt2))
+	    const.tela.blit(bola, (x_bola, y_bola))
+	    
         #EXIBINDO A PONTUAÇÃO NA TELA
         nome_jogador1 = fonteTexto.render("Jogador A", True, const.cor_da_borda)
         nome_jogador2 = fonteTexto.render("Jogador B", True, const.cor_da_borda)
