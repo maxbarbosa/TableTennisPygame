@@ -19,6 +19,18 @@ def exibir_tela_multijogador():
     #DEFININDO A FONTE USADA PARA EXIBIR O PLACAR
     fonteTexto = pygame.font.SysFont(const.fonte, 18, True)
     fonteNumero = pygame.font.SysFont(const.fonte, 25, True)
+    
+    bola = pygame.image.load(const.img_bolinha)
+    x_bola = posicionarSaque(posicao_seta)[0]
+    y_bola = posicionarSaque(posicao_seta)[1]
+
+    raquete1 = pygame.image.load(const.img_raquete1)
+    x_rqt1 = 15
+    y_rqt1 = 330
+
+    raquete2 = pygame.image.load(const.img_raquete2)
+    x_rqt2 = 1045
+    y_rqt2 = 330
 
     while True:
         const.relogio.tick(const.fps)
@@ -49,6 +61,29 @@ def exibir_tela_multijogador():
         #DESENHANDO REDE E LINHA DIVISÓRIA DA MESA
         pygame.draw.line(const.tela, const.cor_da_rede, (559, 124), (559, 614), 10)
         pygame.draw.aaline(const.tela, const.cor_da_rede, (100, 370), (1019, 370))
+        
+        tecla = pygame.key.get_pressed()
+
+        #AÇÕES DO 1º JOGADOR
+        if tecla[K_w]:
+            y_rqt1 = R_praCima(y_rqt1, 120)
+        if tecla[K_a]:
+            x_rqt1 = R_praEsquerda(x_rqt1, 0)
+        if tecla[K_s]:
+            y_rqt1 = R_praBaixo(y_rqt1, 530)
+        if tecla[K_d]:
+            x_rqt1 = R_praDireita(x_rqt1, 240)
+
+        #AÇÕES DO 2º JOGADOR
+        if tecla[K_UP]:
+            y_rqt2 = R_praCima(y_rqt2, 120) 
+        if tecla[K_LEFT]:
+            x_rqt2 = R_praEsquerda(x_rqt2, 816)
+        if tecla[K_DOWN]:
+            y_rqt2 = R_praBaixo(y_rqt2, 530)
+        if tecla[K_RIGHT]:
+            x_rqt2 = R_praDireita(x_rqt2, 1056)
+            
 
         #EXIBINDO A PONTUAÇÃO NA TELA
         nome_jogador1 = fonteTexto.render("Jogador A", True, const.cor_da_borda)
