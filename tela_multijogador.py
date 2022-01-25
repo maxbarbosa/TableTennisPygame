@@ -2,6 +2,7 @@ import pygame
 import constantes as const
 from pygame.locals import *
 from sys import exit
+from sorteio import *
 
 def exibir_tela_multijogador():
     
@@ -19,7 +20,12 @@ def exibir_tela_multijogador():
     #DEFININDO A FONTE USADA PARA EXIBIR O PLACAR
     fonteTexto = pygame.font.SysFont(const.fonte, 18, True)
     fonteNumero = pygame.font.SysFont(const.fonte, 25, True)
-    
+    fonteAviso = pygame.font.SysFont(const.fonte, 45, True)
+
+    imagem_seta = pygame.image.load(const.img_seta_direita)
+    imagem_seta = pygame.transform.scale(imagem_seta, (32, 32))
+    posicao_seta = sortearSaque()
+
     bola = pygame.image.load(const.img_bolinha)
     x_bola = posicionarSaque(posicao_seta)[0]
     y_bola = posicionarSaque(posicao_seta)[1]
@@ -31,6 +37,11 @@ def exibir_tela_multijogador():
     raquete2 = pygame.image.load(const.img_raquete2)
     x_rqt2 = 1045
     y_rqt2 = 330
+    
+    #CRIAÇÃO DE MÁSCARAS PARA VERIFICAR COLISÕES ENTRE AS IMAGENS
+    mascara_bola = pygame.mask.from_surface(bola)
+    mascara_rqt1 = pygame.mask.from_surface(raquete1)
+    mascara_rqt2 = pygame.mask.from_surface(raquete2)
 
     while True:
         const.relogio.tick(const.fps)
@@ -83,6 +94,16 @@ def exibir_tela_multijogador():
             y_rqt2 = R_praBaixo(y_rqt2, 530)
         if tecla[K_RIGHT]:
             x_rqt2 = R_praDireita(x_rqt2, 1056)
+            
+        #RETORNA A POSIÇÃO DA BOLINHA EM RELAÇÃO ÀS RAQUETES
+        sobreposicao1 = (x_bola - x_rqt1, y_bola - y_rqt1)
+        sobreposicao2 = (x_bola - x_rqt2, y_bola - y_rqt2)
+
+        #A FUNÇÃO OVERLAP RETORNA O PONTO DE INTERSEÇÃO
+        #DO PRIMEIRO PARÂMETRO QUE É UMA
+        #MÁSCARA E O DESLOCAMENTO DA SEGUNDA IMAGEM
+        colisao1 = mascara_rqt1.overlap(mascara_bola, sobreposicao1)
+        colisao2 = mascara_rqt2.overlap(mascara_bola, sobreposicao2)
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
