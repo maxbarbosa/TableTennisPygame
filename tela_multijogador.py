@@ -104,6 +104,13 @@ def exibir_tela_multijogador():
         #MÁSCARA E O DESLOCAMENTO DA SEGUNDA IMAGEM
         colisao1 = mascara_rqt1.overlap(mascara_bola, sobreposicao1)
         colisao2 = mascara_rqt2.overlap(mascara_bola, sobreposicao2)
+        
+        #CONTROLANDO A BOLINHA DURANTE O SAQUE
+        if controlar_saque == True and not colisao1 and not colisao2:
+            if tecla[K_t]:
+                y_bola = B_praCima(y_bola, 130)
+            if tecla[K_g]:
+                y_bola = B_praBaixo(y_bola, 585)
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
