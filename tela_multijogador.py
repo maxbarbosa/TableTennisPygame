@@ -111,6 +111,29 @@ def exibir_tela_multijogador():
                 y_bola = B_praCima(y_bola, 130)
             if tecla[K_g]:
                 y_bola = B_praBaixo(y_bola, 585)
+        
+        #MOVIMENTANDO A BOLINHA A PARTIR DA COLISÃO DA BOLINHA COM UMA RAQUETE
+        if colisao1 or colisao2:
+            som_raquete.play()
+            controlar_saque = False
+
+            v_x_bolinha = randint(7, 9)
+            v_y_bolinha = randint(-6, 6)
+            
+            if colisao1:
+                direita = True
+                esquerda = False
+
+            if colisao2:
+                direita = False
+                esquerda = True
+                
+        if direita:
+            x_bola += v_x_bolinha
+        if esquerda:
+            x_bola -= v_x_bolinha
+        
+        y_bola += v_y_bolinha
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
