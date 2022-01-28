@@ -1,8 +1,9 @@
 <h1 align="center">🏓 Tênis de mesa 🏓</h1>
 <br>
-<p align="center"><img src="./assets/modo_multijogador.png" width="90%" height="90%"/></p>
+<p align="center"><img src="./img/modo_multijogador.png" width="90%" height="90%"/></p>
 
 ### 📜 Requisitos:
+
 * Python3
 * Pip (Python Package Index)
 * Biblioteca `pygame` instalada no PC
@@ -17,7 +18,7 @@ Após instalar as dependências, clone o repositório em seu PC da maneira que p
    
 <h1 align="center">Tela de Menu</h1>
 <br>
-<p align="center"><img src="./assets/tela_menu.png" width="90%" height="90%"/></p>
+<p align="center"><img src="./img/tela_menu.png" width="90%" height="90%"/></p>
 
 # 🎮 Controles:
 * Utilize as teclas ⬇️ e ⬆️ para selecionar a opção desejada na tela de menu usando a tecla `Enter`
