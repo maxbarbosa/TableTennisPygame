@@ -1,8 +1,12 @@
-import pygame
+import pygame, tela_menu
 import constantes as const
 from pygame.locals import *
 from sys import exit
 from sorteio import *
+from raquete import *
+from bola import *
+from random import randint
+from time import sleep
 
 def exibir_tela_multijogador():
     
@@ -12,6 +16,19 @@ def exibir_tela_multijogador():
 
     pts_jogador1 = 0
     pts_jogador2 = 0
+
+    pontos = 0
+
+    vencedor = ""
+
+    controlar_saque = True
+    atrasar_saque = False
+    contou_ponto = False
+    acabou_set = False
+    direita = False
+    esquerda = False
+    v_x_bolinha = 0
+    v_y_bolinha = 0
     
     pygame.init()
 
@@ -134,6 +151,28 @@ def exibir_tela_multijogador():
             x_bola -= v_x_bolinha
         
         y_bola += v_y_bolinha
+        
+        #VERIFICANDO SE A BOLINHA PASSOU DOS LIMITES DA TELA
+        if x_bola < -32 or x_bola > 1130:
+            contou_ponto = True
+            controlar_saque = True
+            atrasar_saque = True
+            direita = False
+            esquerda = False
+
+            x_rqt1 = 15
+            y_rqt1 = 330
+
+            x_rqt2 = 1045
+            y_rqt2 = 330
+
+            if x_bola > 1130:
+                pts_jogador1 += 1
+                v_y_bolinha = 0
+
+            if x_bola < -32:
+                pts_jogador2 += 1
+                v_y_bolinha = 0
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
