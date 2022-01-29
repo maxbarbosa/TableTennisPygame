@@ -54,12 +54,16 @@ def exibir_tela_multijogador():
     raquete2 = pygame.image.load(const.img_raquete2)
     x_rqt2 = 1045
     y_rqt2 = 330
-    
+
     #CRIAÇÃO DE MÁSCARAS PARA VERIFICAR COLISÕES ENTRE AS IMAGENS
     mascara_bola = pygame.mask.from_surface(bola)
     mascara_rqt1 = pygame.mask.from_surface(raquete1)
     mascara_rqt2 = pygame.mask.from_surface(raquete2)
 
+    som_raquete = pygame.mixer.Sound('sons/som_raquete.ogg')
+    som_mesa = pygame.mixer.Sound('sons/som_mesa.ogg')
+    som_aplausos = pygame.mixer.Sound('sons/som_aplausos.ogg')
+    
     while True:
         const.relogio.tick(const.fps)
         
@@ -89,7 +93,7 @@ def exibir_tela_multijogador():
         #DESENHANDO REDE E LINHA DIVISÓRIA DA MESA
         pygame.draw.line(const.tela, const.cor_da_rede, (559, 124), (559, 614), 10)
         pygame.draw.aaline(const.tela, const.cor_da_rede, (100, 370), (1019, 370))
-        
+
         tecla = pygame.key.get_pressed()
 
         #AÇÕES DO 1º JOGADOR
@@ -111,7 +115,7 @@ def exibir_tela_multijogador():
             y_rqt2 = R_praBaixo(y_rqt2, 530)
         if tecla[K_RIGHT]:
             x_rqt2 = R_praDireita(x_rqt2, 1056)
-            
+
         #RETORNA A POSIÇÃO DA BOLINHA EM RELAÇÃO ÀS RAQUETES
         sobreposicao1 = (x_bola - x_rqt1, y_bola - y_rqt1)
         sobreposicao2 = (x_bola - x_rqt2, y_bola - y_rqt2)
@@ -121,14 +125,14 @@ def exibir_tela_multijogador():
         #MÁSCARA E O DESLOCAMENTO DA SEGUNDA IMAGEM
         colisao1 = mascara_rqt1.overlap(mascara_bola, sobreposicao1)
         colisao2 = mascara_rqt2.overlap(mascara_bola, sobreposicao2)
-        
+
         #CONTROLANDO A BOLINHA DURANTE O SAQUE
         if controlar_saque == True and not colisao1 and not colisao2:
             if tecla[K_t]:
                 y_bola = B_praCima(y_bola, 130)
             if tecla[K_g]:
                 y_bola = B_praBaixo(y_bola, 585)
-        
+
         #MOVIMENTANDO A BOLINHA A PARTIR DA COLISÃO DA BOLINHA COM UMA RAQUETE
         if colisao1 or colisao2:
             som_raquete.play()
@@ -151,7 +155,7 @@ def exibir_tela_multijogador():
             x_bola -= v_x_bolinha
         
         y_bola += v_y_bolinha
-        
+
         #VERIFICANDO SE A BOLINHA PASSOU DOS LIMITES DA TELA
         if x_bola < -32 or x_bola > 1130:
             contou_ponto = True
@@ -173,6 +177,17 @@ def exibir_tela_multijogador():
             if x_bola < -32:
                 pts_jogador2 += 1
                 v_y_bolinha = 0
+
+        #VERIFICANDO SE A BOLINHA ALCANÇOU AS BORDAS SUPERIOR E INFERIOR DA MESA
+        if(y_bola < 130):
+            som_mesa.play()
+            y_bola = 130
+            v_y_bolinha = -v_y_bolinha
+
+        if(y_bola > 585):
+            som_mesa.play()
+            y_bola = 585
+            v_y_bolinha = -v_y_bolinha
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
