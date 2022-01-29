@@ -188,6 +188,20 @@ def exibir_tela_multijogador():
             som_mesa.play()
             y_bola = 585
             v_y_bolinha = -v_y_bolinha
+        
+        #VERIFICANDO SE O JOGADOR1 GANHOU O SET
+        if pts_jogador1 >= 11 and  pts_jogador1-pts_jogador2 > 1:
+            sets_jogador1 += 1
+            
+            if sets_jogador1 < 4:
+                exibirVencedorSet = fonteAviso.render("Jogador A venceu o set por %d a %d" %(pts_jogador1, pts_jogador2), True, const.cor_vermelha)
+                const.tela.blit(exibirVencedorSet, (150, 160))
+
+            acabou_set = True
+            pts_jogador1 = 0
+            pts_jogador2 = 0
+            v_x_bolinha = 0
+            v_y_bolinha = 0
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
