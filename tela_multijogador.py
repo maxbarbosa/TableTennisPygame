@@ -217,6 +217,11 @@ def exibir_tela_multijogador():
             v_x_bolinha = 0
             v_y_bolinha = 0
             
+        #VERIFICANDO SE ALGUÉM FEZ UM PONTO
+        if contou_ponto:
+            contou_ponto = False
+            pontos = pts_jogador1+pts_jogador2
+            
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
 	    const.tela.blit(raquete2, (x_rqt2, y_rqt2))
