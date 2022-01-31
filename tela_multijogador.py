@@ -221,6 +221,21 @@ def exibir_tela_multijogador():
         if contou_ponto:
             contou_ponto = False
             pontos = pts_jogador1+pts_jogador2
+        
+        #VERIFICANDO SE DEVE TROCAR A POSIÇÃO DO SAQUE A CADA DOIS PONTOS ANTES DO 10a10
+            if pontos < 20:
+                if pontos%2 == 0:
+                    if posicao_seta == [850, 15]:
+                        posicao_seta = [850, 55]
+                    else:
+                        posicao_seta = [850, 15]
+                
+                if posicao_seta == [850, 15]:
+                    x_bola = 92
+                    y_bola = 359
+                else:
+                    x_bola = 1005
+                    y_bola = 359
             
 		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
 	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
