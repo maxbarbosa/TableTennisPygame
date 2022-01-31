@@ -188,7 +188,7 @@ def exibir_tela_multijogador():
             som_mesa.play()
             y_bola = 585
             v_y_bolinha = -v_y_bolinha
-        
+
         #VERIFICANDO SE O JOGADOR1 GANHOU O SET
         if pts_jogador1 >= 11 and  pts_jogador1-pts_jogador2 > 1:
             sets_jogador1 += 1
@@ -202,7 +202,7 @@ def exibir_tela_multijogador():
             pts_jogador2 = 0
             v_x_bolinha = 0
             v_y_bolinha = 0
-        
+
         #VERIFICANDO SE O JOGADOR2 GANHOU O SET
         if pts_jogador2 >= 11 and  pts_jogador2-pts_jogador1 > 1:
             sets_jogador2 += 1
@@ -216,13 +216,13 @@ def exibir_tela_multijogador():
             pts_jogador2 = 0
             v_x_bolinha = 0
             v_y_bolinha = 0
-            
+        
         #VERIFICANDO SE ALGUÉM FEZ UM PONTO
         if contou_ponto:
             contou_ponto = False
             pontos = pts_jogador1+pts_jogador2
-        
-        #VERIFICANDO SE DEVE TROCAR A POSIÇÃO DO SAQUE A CADA DOIS PONTOS ANTES DO 10 a 10
+
+            #VERIFICANDO SE DEVE TROCAR A POSIÇÃO DO SAQUE A CADA DOIS PONTOS ANTES DO 10 a 10
             if pontos < 20:
                 if pontos%2 == 0:
                     if posicao_seta == [850, 15]:
@@ -236,8 +236,8 @@ def exibir_tela_multijogador():
                 else:
                     x_bola = 1005
                     y_bola = 359
-        
-        #VERIFICANDO SE DEVE TROCAR A POSIÇÃO DO SAQUE A PARTIR DO 10 a 10            
+
+            #VERIFICANDO SE DEVE TROCAR A POSIÇÃO DO SAQUE A PARTIR DO 10 a 10            
             else:
                 if posicao_seta == [850, 15]:
                     posicao_seta = [850, 55]
@@ -247,12 +247,24 @@ def exibir_tela_multijogador():
                     posicao_seta = [850, 15]
                     x_bola = 92
                     y_bola = 359
-          
-		#ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
-	    const.tela.blit(raquete1, (x_rqt1, y_rqt1))
-	    const.tela.blit(raquete2, (x_rqt2, y_rqt2))
-	    const.tela.blit(bola, (x_bola, y_bola))
-	    
+
+        #VERIFICANDO SE UM DOS DOIS JOGADORES ALCANÇOU 4 SETS
+        if sets_jogador1 == 4 or sets_jogador2 == 4:
+            if sets_jogador1 == 4:
+                vencedor = "O Jogador A venceu a partida!"
+            else:
+                vencedor = "O Jogador B venceu a partida!"
+
+            exibirVencedor = fonteAviso.render(vencedor, True, const.cor_vermelha)
+            const.tela.blit(exibirVencedor, (200, 160))
+            som_aplausos.play()
+        
+        #ATUALIZANDO A POSIÇÃO DOS ELEMENTOS DO JOGO
+        const.tela.blit(raquete1, (x_rqt1, y_rqt1))
+        const.tela.blit(raquete2, (x_rqt2, y_rqt2))
+        const.tela.blit(bola, (x_bola, y_bola))
+        const.tela.blit(imagem_seta, posicao_seta)
+
         #EXIBINDO A PONTUAÇÃO NA TELA
         nome_jogador1 = fonteTexto.render("Jogador A", True, const.cor_da_borda)
         nome_jogador2 = fonteTexto.render("Jogador B", True, const.cor_da_borda)
@@ -278,4 +290,14 @@ def exibir_tela_multijogador():
         
         pygame.display.flip()
 
-exibir_tela_multijogador()
+        if atrasar_saque:
+            sleep(1.2)
+            atrasar_saque = False
+            
+        if acabou_set:
+            sleep(5)
+            acabou_set = False
+
+        if vencedor != "":
+            sleep(10)
+            tela_menu.exibir_tela_menu()
