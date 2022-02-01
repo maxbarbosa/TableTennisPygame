@@ -13,4 +13,18 @@ def sortearSaque():
 
     return posicao_seta
 
+#CONTROLANDO AS SETAS NO MENU PRINCIPAL DO JOGO
+def S_praCima(y_opcao, limite):
+    y_opcao -= 100
 
+    if y_opcao < limite:
+        y_opcao = limite
+    
+    return y_opcao
+
+def S_praBaixo(y_opcao, limite):
+    y_opcao += 100
+    if y_opcao > limite:
+        y_opcao = limite
+    
+    return y_opcao
