@@ -95,6 +95,9 @@ def exibir_tela_multijogador():
         pygame.draw.aaline(const.tela, const.cor_da_rede, (100, 370), (1019, 370))
 
         tecla = pygame.key.get_pressed()
+        
+        if tecla[K_ESCAPE]:
+            tela_menu.exibir_tela_menu()
 
         #AÇÕES DO 1º JOGADOR
         if tecla[K_w]:
