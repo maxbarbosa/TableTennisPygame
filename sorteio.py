@@ -28,3 +28,4 @@ def S_praBaixo(y_opcao, limite):
         y_opcao = limite
     
     return y_opcao
+
